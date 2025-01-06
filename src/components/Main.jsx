@@ -3,6 +3,7 @@ import LoadingCircle from "./LoadingCircle";
 import { useEffect, useState } from "react";
 import MenuHamburger from "../icons/MenuHamburger.svg";
 import X from "../icons/X.svg";
+import { Product } from "./Product";
 
 export const Main = () => {
   const { filtros, setFiltros } = useFiltros();
@@ -29,7 +30,6 @@ export const Main = () => {
           console.error("Error al obtener productos");
         }
         const data = await response.json();
-        console.log(data);
         setProductos(data);
       } catch (error) {
         setError(error);
@@ -134,23 +134,7 @@ export const Main = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {productosOrdenados &&
           productosOrdenados.map((producto) => (
-            <div
-              key={producto.id}
-              className="flex flex-col bg-white shadow-md p-4 rounded-md"
-            >
-              <div className="flex-1">
-                <img
-                  src={producto.image}
-                  alt={producto.nombre}
-                  className="w-full h-72 object-cover rounded-md"
-                />
-                <h3 className="text-xl font-bold mt-4">{producto.nombre}</h3>
-                <p className="text-lg font-bold mt-2">${producto.precio}</p>
-              </div>
-              <button className="bg-blue-500 text-white font-bold py-2 px-4 mt-4 rounded-md">
-                Agregar al carrito
-              </button>
-            </div>
+            <Product key={producto.id} producto={producto} />
           ))}
       </div>
     </main>
