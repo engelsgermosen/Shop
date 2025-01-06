@@ -1,0 +1,63 @@
+import { useParams } from "react-router";
+import LoadingCircle from "./LoadingCircle";
+import { useEffect, useState } from "react";
+
+export const ProductById = () => {
+  const [producto, setProducto] = useState();
+  const [error, setError] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const usefetch = async () => {
+      try {
+        const response = await fetch(
+          `https://api-ten-jet.vercel.app/products/${id}`
+        );
+
+        if (!response.ok) {
+          console.error("Error al obtener productos");
+        }
+        const data = await response.json();
+        console.log(data);
+        setProducto(data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    usefetch();
+  }, []);
+
+  if (!producto) return <LoadingCircle />;
+
+  return (
+    <div className="flex flex-1 bg-white/20">
+      <aside className="hidden md:flex w-1/4 max-w-[250px] bg-gray-300 pt-4">
+        <img
+          loading="lazy"
+          className="size-32 mx-auto rounded-md"
+          src={producto.image}
+        />
+      </aside>
+      <main className="flex-1 flex flex-col lg:flex-row items-center gap-4 p-4">
+        <div className="lg:w-[700px]">
+          <img
+            loading="lazy"
+            className="rounded-md border-2 border-gray-400"
+            src={producto.image}
+          />
+        </div>
+        <section className="max-w-[600px] lg:w-full md:px-10 lg:p-0 flex flex-col gap-4">
+          <h1 className="text-xl font-bold md:text-3xl md:font-semibold">
+            {producto.nombre}
+          </h1>
+          <span className="text-2xl text-purple-600">${producto.precio}</span>
+          <p className="text-xl">{producto.descripcion}</p>
+          <button className="w-full hover:bg-sky-800 hover:text-white bg-sky-500 rounded-lg text-black/80 text-xl font-bold py-2 px-4 mt-8">
+            Agregar al carrito
+          </button>
+        </section>
+      </main>
+    </div>
+  );
+};

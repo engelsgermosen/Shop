@@ -2,9 +2,9 @@ import { useFiltros } from "../context/FiltrosContext";
 import LoadingCircle from "./LoadingCircle";
 import { useEffect, useState } from "react";
 import MenuHamburger from "../icons/MenuHamburger.svg";
-import X from "../icons/X.svg";
 import { Product } from "./Product";
 import Search from "../icons/Search.svg";
+import { MovilSideBar } from "./MovilSideBar";
 
 export const Main = () => {
   const { filtros, setFiltros } = useFiltros();
@@ -13,15 +13,6 @@ export const Main = () => {
   const [order, setOrder] = useState("relevante");
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
-
-  const toggleFiltro = (tipoFiltro, valor) => {
-    setFiltros((prevFiltros) => ({
-      ...prevFiltros,
-      [tipoFiltro]: prevFiltros[tipoFiltro].includes(valor)
-        ? prevFiltros[tipoFiltro].filter((item) => item !== valor)
-        : [...prevFiltros[tipoFiltro], valor],
-    }));
-  };
 
   useEffect(() => {
     const usefetch = async () => {
@@ -67,8 +58,12 @@ export const Main = () => {
   });
 
   const productosBuscados = [...productosOrdenados].filter((producto) => {
-    return producto.descripcion.toLowerCase().includes(search.toLowerCase());
+    return producto.nombre.toLowerCase().includes(search.toLowerCase());
   });
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleBar = () => (isOpen ? "left-0" : "-left-full");
 
@@ -79,56 +74,17 @@ export const Main = () => {
       <div
         className={`absolute p-8 pt-12 z-10  top-0 ${handleBar()} transition-left backdrop-blur-3xl duration-500 ease-in-out md:hidden  w-full h-full`}
       >
-        <button onClick={() => setIsOpen(!isOpen)}>
-          <img
-            className="size-8 transition duration-300 ease-in-out hover:rotate-90"
-            src={X}
-          />
-        </button>
-        <div className="flex flex-col gap-8">
-          <h2 className="text-4xl mt-8 font-bold">Filtros</h2>
-          <div className="flex flex-col gap-20">
-            <div className="flex flex-col gap-4">
-              <h2 className="text-2xl font-bold">Categorias</h2>
-              <div className="flex flex-col gap-4">
-                <label className="text-xl">
-                  <input
-                    className="mr-1"
-                    type="checkbox"
-                    onChange={() => toggleFiltro("categoria", "Hombres")}
-                  />
-                  Hombres
-                </label>
-                <label className="text-xl">
-                  <input
-                    className="mr-1"
-                    type="checkbox"
-                    onChange={() => toggleFiltro("categoria", "Mujeres")}
-                  />
-                  Mujeres
-                </label>
-                <label className="text-xl">
-                  <input
-                    className="mr-1"
-                    type="checkbox"
-                    onChange={() => toggleFiltro("categoria", "Niños")}
-                  />
-                  Niños
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
+        <MovilSideBar setIsOpen={handleOpen} setFiltros={setFiltros} />
       </div>
       <header className="flex justify-between flex-col items-center">
         <div className="w-full relative">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-slate-300 rounded-md p-2 pl-4"
-            placeholder="Producto..."
+            className="w-full bg-slate-300 rounded-md p-2 pl-10"
+            placeholder="Buscar producto"
           />
-          <img className="size-6 absolute top-2 right-4" src={Search} />`
+          <img className="size-6 absolute top-2 left-1" src={Search} />`
         </div>
         <div className="flex justify-between mt-2 items-center w-full">
           <h2 className="hidden md:block text-2xl lg:text-3xl font-bold">
