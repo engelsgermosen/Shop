@@ -1,9 +1,7 @@
-import { Link, useNavigate } from "react-router";
+import { Link, NavLink } from "react-router";
 import CartShopping from "../icons/CartShopping.svg";
-import Search from "../icons/Search.svg";
 
 export const Header = () => {
-  const navigate = useNavigate();
   return (
     <header className="w-full bg-gray-800 flex justify-between text-white p-4">
       <Link to="/">
@@ -12,13 +10,12 @@ export const Header = () => {
         </h1>
       </Link>
 
-      <nav className="flex gap-4">
-        <button>
-          <img src={Search} />
-        </button>
-        <button onClick={() => navigate("/carrito")}>
-          <img src={CartShopping} />
-        </button>
+      <nav className="flex items-center">
+        <NavLink className="flex items-center" to={"/carrito"}>
+          <button onClick={() => navigate("/carrito")}>
+            <img src={CartShopping} />
+          </button>
+        </NavLink>
       </nav>
     </header>
   );
