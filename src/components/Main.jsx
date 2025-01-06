@@ -75,7 +75,7 @@ export const Main = () => {
   if (productos.length === 0) return <LoadingCircle />;
 
   return (
-    <main className="flex-1 relative w-full flex flex-col gap-8 p-4 md:p-4">
+    <main className="flex-1 relative w-full min-h-screen flex flex-col gap-8 p-4 md:p-4">
       <div
         className={`absolute p-8 pt-12 z-10  top-0 ${handleBar()} transition-left backdrop-blur-3xl duration-500 ease-in-out md:hidden  w-full h-full`}
       >
