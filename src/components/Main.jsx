@@ -115,7 +115,7 @@ export const Main = () => {
           ))
         ) : (
           <h1 className="col-span-3 md:text-xl">
-            No existe un producto con esa descripcion
+            No existe un producto con ese nombre
           </h1>
         )}
       </div>

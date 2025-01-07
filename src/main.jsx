@@ -7,18 +7,21 @@ import { Home } from "./components/Home.jsx";
 import { Carrito } from "./components/Carrito.jsx";
 import { NotFound } from "./components/NotFound.jsx";
 import { ProductById } from "./components/ProductById.jsx";
+import { CarritoProvider } from "./context/CarritoContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <FiltrosProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="/producto/:id" element={<ProductById />} />
-          <Route path="/carrito" element={<Carrito />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <CarritoProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />} />
+            <Route path="/producto/:id" element={<ProductById />} />
+            <Route path="/carrito" element={<Carrito />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </CarritoProvider>
   </FiltrosProvider>
 );

@@ -1,11 +1,14 @@
 import { useParams } from "react-router";
 import LoadingCircle from "./LoadingCircle";
 import { useEffect, useState } from "react";
+import { useCarrito } from "../context/CarritoContext";
+import Swal from "sweetalert2";
 
 export const ProductById = () => {
   const [producto, setProducto] = useState();
   const [error, setError] = useState();
   const { id } = useParams();
+  const { agregarProducto } = useCarrito();
 
   useEffect(() => {
     const usefetch = async () => {
@@ -27,6 +30,17 @@ export const ProductById = () => {
 
     usefetch();
   }, []);
+
+  const handleAddProduct = () => {
+    agregarProducto({ ...producto, cantidad: 1 });
+    Swal.fire({
+      icon: "success",
+      title: "Producto agregado al carrito",
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+    });
+  };
 
   if (!producto) return <LoadingCircle />;
 
@@ -53,9 +67,17 @@ export const ProductById = () => {
           </h1>
           <span className="text-2xl text-purple-600">${producto.precio}</span>
           <p className="text-xl">{producto.descripcion}</p>
-          <button className="w-full hover:bg-sky-800 hover:text-white bg-sky-500 rounded-lg text-black/80 text-xl font-bold py-2 px-4 mt-8">
+          <button
+            onClick={handleAddProduct}
+            className="w-full hover:bg-sky-800 hover:text-white bg-sky-500 rounded-lg text-black/80 text-xl font-bold py-2 px-4 mt-8"
+          >
             Agregar al carrito
           </button>
+          <p className="mt-6 opacity-70">
+            Producto 100% original. El pago contra reemboldo esta disponible
+            para producto. Politica de devolucion y cambio facil dentro de los 7
+            dias.
+          </p>
         </section>
       </main>
     </div>
