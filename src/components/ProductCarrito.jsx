@@ -30,12 +30,14 @@ export const ProductCarrito = ({ producto }) => {
 
   return (
     <tr key={producto.id} className="text-center bg-blue-200 hover:bg-blue-300">
-      <td className="p-1 flex justify-center border border-blue-500">
-        {<img className="size-14" src={producto.image} />}
+      <td className="p-1 flex justify-center border border-indigo-500/80">
+        {<img className="size-14 aspect-video" src={producto.image} />}
       </td>
-      <td className="p-1 border border-blue-500">{producto.nombre}</td>
-      <td className="p-1 border border-blue-500">{producto.precio}</td>
-      <td className="p-1 border border-blue-500">
+      <td className="hidden md:table-cell p-1 border border-indigo-500/80">
+        {producto.nombre}
+      </td>
+      <td className="p-1 border border-indigo-500/80">{producto.precio}</td>
+      <td className="p-1 border border-indigo-500/80">
         <div className="flex items-center justify-center gap-2">
           <button
             onClick={() => updateCantidad(producto.id, producto.cantidad - 1)}
@@ -52,10 +54,10 @@ export const ProductCarrito = ({ producto }) => {
           </button>
         </div>
       </td>
-      <td className="p-1 border border-blue-500">
+      <td className="p-1 border border-indigo-500/80">
         {producto.precio * producto.cantidad}
       </td>
-      <td className="p-1 border border-blue-500">
+      <td className="p-1 border border-indigo-500/80">
         <button
           className="p-1 bg-red-500 hover:bg-red-700 text-white rounded"
           onClick={handleEliminar}

@@ -5,11 +5,11 @@ export const ProductCart = () => {
   const { carrito } = useCarrito();
 
   return (
-    <div className="flex w-full max-h-[550px] overflow-y-scroll">
-      <table className="bg-blue-400 w-full border-collapse">
+    <div className="flex w-full h-full max-h-[340px] md:max-h-[580px]  overflow-y-scroll">
+      <table className="bg-blue-400 h-max w-full border-collapse">
         <thead className="sticky top-0">
-          <tr className="bg-blue-600 text-white">
-            <th></th>
+          <tr className="bg-blue-500 text-white/90">
+            <th className="hidden md:table-cell"></th>
             <th className="p-2 border border-blue-500">Producto</th>
             <th className="p-2 border border-blue-500">Precio</th>
             <th className="p-2 border border-blue-500">Cantidad</th>
@@ -17,7 +17,7 @@ export const ProductCart = () => {
             <th className="p-2 border border-blue-500">Accion</th>
           </tr>
         </thead>
-        <tbody className="max-h-[200px] overflow-y-auto">
+        <tbody className="overflow-y-auto">
           {carrito && carrito.length > 0 ? (
             carrito.map((producto) => (
               <ProductCarrito key={producto.id} producto={producto} />
