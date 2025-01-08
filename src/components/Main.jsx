@@ -5,6 +5,7 @@ import MenuHamburger from "../icons/MenuHamburger.svg";
 import { Product } from "./Product";
 import Search from "../icons/Search.svg";
 import { MovilSideBar } from "./MovilSideBar";
+import { PageUp } from "./PageUp";
 
 export const Main = () => {
   const { filtros, setFiltros } = useFiltros();
@@ -119,6 +120,7 @@ export const Main = () => {
           </h1>
         )}
       </div>
+      <PageUp />
     </main>
   );
 };

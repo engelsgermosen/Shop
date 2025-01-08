@@ -29,20 +29,23 @@ export const ProductCarrito = ({ producto }) => {
   };
 
   return (
-    <tr key={producto.id} className="text-center bg-blue-200 hover:bg-blue-300">
-      <td className="p-1 flex justify-center border border-indigo-500/80">
+    <tr
+      key={producto.id}
+      className="text-center text-white bg-gray-700 hover:bg-gray-500"
+    >
+      <td className="p-1 flex justify-center border border-black">
         {<img className="size-14 aspect-video" src={producto.image} />}
       </td>
-      <td className="hidden md:table-cell p-1 border border-indigo-500/80">
+      <td className="hidden md:table-cell p-1 border border-black">
         {producto.nombre}
       </td>
-      <td className="p-1 border border-indigo-500/80">{producto.precio}</td>
-      <td className="p-1 border border-indigo-500/80">
+      <td className="p-1 border border-black">{producto.precio}</td>
+      <td className="p-1 border border-black">
         <div className="flex items-center justify-center gap-2">
           <button
             onClick={() => updateCantidad(producto.id, producto.cantidad - 1)}
           >
-            <img className="border-2 bg-white/80 border-gray-400" src={Minus} />
+            <img className="border-2 bg-white/90 border-gray-400" src={Minus} />
           </button>
           <span>{producto.cantidad}</span>
           <button
@@ -50,19 +53,19 @@ export const ProductCarrito = ({ producto }) => {
               updateCantidad(producto.id, producto.cantidad + 1);
             }}
           >
-            <img className="border-2 bg-white/80 border-gray-400" src={Plus} />
+            <img className="border-2 bg-white/90 border-gray-400" src={Plus} />
           </button>
         </div>
       </td>
-      <td className="p-1 border border-indigo-500/80">
+      <td className="p-1 border border-black">
         {producto.precio * producto.cantidad}
       </td>
-      <td className="p-1 border border-indigo-500/80">
+      <td className="p-1 border border-black bg-red-500/80 hover:bg-red-500">
         <button
-          className="p-1 bg-red-500 hover:bg-red-700 text-white rounded"
+          className="flex items-center w-full rounded"
           onClick={handleEliminar}
         >
-          <img src={Trash} alt="Eliminar" />
+          <img className="size-8 mx-auto" src={Trash} alt="Eliminar" />
         </button>
       </td>
     </tr>

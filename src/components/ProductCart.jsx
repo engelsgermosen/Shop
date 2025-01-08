@@ -6,15 +6,15 @@ export const ProductCart = () => {
 
   return (
     <div className="flex w-full h-full max-h-[340px] md:max-h-[580px]  overflow-y-scroll">
-      <table className="bg-blue-400 h-max w-full border-collapse">
+      <table className="bg-gray-800 h-max w-full border-collapse">
         <thead className="sticky top-0">
-          <tr className="bg-blue-500 text-white/90">
+          <tr className="bg-indigo-500 text-white/90">
             <th className="hidden md:table-cell"></th>
-            <th className="p-2 border border-blue-500">Producto</th>
-            <th className="p-2 border border-blue-500">Precio</th>
-            <th className="p-2 border border-blue-500">Cantidad</th>
-            <th className="p-2 border border-blue-500">Total</th>
-            <th className="p-2 border border-blue-500">Accion</th>
+            <th className="p-2 border border-black">Producto</th>
+            <th className="p-2 border border-black">Precio</th>
+            <th className="p-2 border border-black">Cantidad</th>
+            <th className="p-2 border border-black">Total</th>
+            <th className="p-2 border border-black">Accion</th>
           </tr>
         </thead>
         <tbody className="overflow-y-auto">
@@ -24,7 +24,10 @@ export const ProductCart = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="6" className="text-xl md:text-2xl text-center">
+              <td
+                colSpan="6"
+                className="text-xl text-white/80 md:text-2xl text-center"
+              >
                 No hay productos en el carrito
               </td>
             </tr>
