@@ -36,7 +36,7 @@ export const PageUp = () => {
         hasScrolled
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
-      } fixed bottom-4 right-4 md:bottom-8 md:right-8 size-14 md:size-16 bg-blue-600 p-2 rounded-full flex items-center justify-center border-2 border-black transition-all duration-300 hover:scale-105 hover:bg-white hover:border-blue-600`}
+      } fixed bottom-4 right-4 md:bottom-8 md:right-8 size-14 bg-gray-800 p-2 rounded-full flex items-center justify-center border-2 border-transparent transition-all duration-300 hover:scale-110 hover:bg-gray-700`}
     >
       <button
         onClick={ScroolToTop}
