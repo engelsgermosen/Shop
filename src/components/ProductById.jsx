@@ -1,4 +1,5 @@
 import { useParams } from "react-router";
+import { ProductNotFound } from "./ProductNotFound";
 import LoadingCircle from "./LoadingCircle";
 import { useEffect, useState } from "react";
 import { useCarrito } from "../context/CarritoContext";
@@ -19,6 +20,7 @@ export const ProductById = () => {
 
         if (!response.ok) {
           console.error("Error al obtener productos");
+          setError("Error al obtener productos");
         }
         const data = await response.json();
         console.log(data);
@@ -43,6 +45,8 @@ export const ProductById = () => {
   };
 
   if (!producto) return <LoadingCircle />;
+
+  if (error) return <ProductNotFound />;
 
   return (
     <div className="flex flex-1 bg-white/20">
@@ -69,7 +73,7 @@ export const ProductById = () => {
           <p className="text-xl">{producto.descripcion}</p>
           <button
             onClick={handleAddProduct}
-            className="w-full hover:bg-sky-800 hover:text-white bg-sky-500 rounded-lg text-black/80 text-xl font-bold py-2 px-4 mt-8"
+            className="bg-blue-500 transition duration-300 ease-in-out hover:bg-white hover:text-gray-800 text-white   text-center font-bold p-3 mt-4 rounded-md text-xl"
           >
             Agregar al carrito
           </button>

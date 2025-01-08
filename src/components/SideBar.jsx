@@ -13,7 +13,7 @@ export const SideBar = () => {
   };
 
   return (
-    <aside className="w-1/4 h-full bg-gray-100  p-4 hidden md:flex flex-col gap-8">
+    <aside className="w-1/4 h-full p-4 hidden md:flex flex-col gap-8">
       <h2 className="text-2xl lg:text-3xl mt-8 font-bold">Filtros</h2>
       <div className="flex flex-col gap-20">
         <div className="flex flex-col gap-4">

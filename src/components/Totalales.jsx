@@ -33,7 +33,7 @@ export const Totales = () => {
           title: "Pago realizado con éxito",
           text: "Gracias por tu compra",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 2500,
           timerProgressBar: true,
         });
         vaciarCarrito();
