@@ -6,7 +6,9 @@ export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
 
   const cantidadProductos = () => {
-    return carrito.length;
+    return carrito.reduce((acc, producto) => {
+      return acc + producto.cantidad;
+    }, 0);
   };
 
   const agregarProducto = (producto) => {

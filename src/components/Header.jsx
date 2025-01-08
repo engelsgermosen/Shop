@@ -17,9 +17,11 @@ export const Header = () => {
         <NavLink className="flex items-center" to={"/carrito"}>
           <button className="relative" onClick={() => navigate("/carrito")}>
             <img src={CartShopping} />
-            <p className="absolute -top-3 bg-blue-500 rounded-full size-5 left-[10px] z-10">
-              {cantidadProductos()}
-            </p>
+            <div
+              className={`absolute -top-[10px] bg-blue-500  size-5 flex left-[10px] z-10 items-center justify-center rounded-full`}
+            >
+              <p className="">{cantidadProductos()}</p>
+            </div>
           </button>
         </NavLink>
       </nav>
