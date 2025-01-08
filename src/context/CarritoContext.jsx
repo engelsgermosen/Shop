@@ -5,6 +5,10 @@ export const CarritoContext = createContext();
 export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
 
+  const cantidadProductos = () => {
+    return carrito.length;
+  };
+
   const agregarProducto = (producto) => {
     const productoExistente = carrito.find((p) => p.id === producto.id);
     if (productoExistente) {
@@ -51,6 +55,7 @@ export const CarritoProvider = ({ children }) => {
         calcularTotal,
         updateCantidad,
         vaciarCarrito,
+        cantidadProductos,
       }}
     >
       {children}
