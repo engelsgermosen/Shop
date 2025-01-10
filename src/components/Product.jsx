@@ -17,7 +17,7 @@ export const Product = ({ producto }) => {
   };
 
   return (
-    <div className="flex transition duration-500 ease-in-out flex-col  hover:bg-slate-500 hover:text-white bg-white h-full shadow-md p-4 rounded-md">
+    <div className="flex animate-fade-in transition duration-500 ease-in-out flex-col  hover:bg-slate-500 hover:text-white bg-white h-full shadow-md p-4 rounded-md">
       <Link to={`/producto/${producto.id}`} className="flex-1 flex flex-col">
         <div className="flex-1">
           <img

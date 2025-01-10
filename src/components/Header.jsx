@@ -15,7 +15,7 @@ export const Header = () => {
 
       <nav className="flex items-center">
         <NavLink className="flex items-center" to={"/carrito"}>
-          <button className="relative" onClick={() => navigate("/carrito")}>
+          <button className="relative">
             <img src={CartShopping} />
             <div
               className={`absolute -top-[10px] bg-blue-500  size-5 flex left-[10px] z-10 items-center justify-center rounded-full`}

@@ -23,7 +23,6 @@ export const ProductById = () => {
           setError("Error al obtener productos");
         }
         const data = await response.json();
-        console.log(data);
         setProducto(data);
       } catch (error) {
         setError(error);

@@ -23,6 +23,7 @@ export const SideBar = () => {
               <input
                 className="mr-1"
                 type="checkbox"
+                checked={filtros.categoria.includes("Hombres")}
                 onChange={() => toggleFiltro("categoria", "Hombres")}
               />
               Hombres
@@ -31,6 +32,7 @@ export const SideBar = () => {
               <input
                 className="mr-1"
                 type="checkbox"
+                checked={filtros.categoria.includes("Mujeres")}
                 onChange={() => toggleFiltro("categoria", "Mujeres")}
               />
               Mujeres
@@ -39,6 +41,7 @@ export const SideBar = () => {
               <input
                 className="mr-1"
                 type="checkbox"
+                checked={filtros.categoria.includes("Niños")}
                 onChange={() => toggleFiltro("categoria", "Niños")}
               />
               Niños

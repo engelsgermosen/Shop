@@ -24,7 +24,6 @@ export const Main = () => {
           console.error("Error al obtener productos");
         }
         const data = await response.json();
-        console.log(data);
         setProductos(data);
       } catch (error) {
         setError(error);

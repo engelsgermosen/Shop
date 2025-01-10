@@ -1,6 +1,9 @@
+import { useFiltros } from "../context/FiltrosContext";
 import X from "../icons/X.svg";
 
 export const MovilSideBar = ({ setIsOpen, setFiltros }) => {
+  const { filtros } = useFiltros();
+
   const toggleFiltro = (tipoFiltro, valor) => {
     setFiltros((prevFiltros) => ({
       ...prevFiltros,
@@ -28,6 +31,7 @@ export const MovilSideBar = ({ setIsOpen, setFiltros }) => {
                 <input
                   className="mr-1"
                   type="checkbox"
+                  checked={filtros.categoria.includes("Hombres")}
                   onChange={() => toggleFiltro("categoria", "Hombres")}
                 />
                 Hombres
@@ -36,6 +40,7 @@ export const MovilSideBar = ({ setIsOpen, setFiltros }) => {
                 <input
                   className="mr-1"
                   type="checkbox"
+                  checked={filtros.categoria.includes("Mujeres")}
                   onChange={() => toggleFiltro("categoria", "Mujeres")}
                 />
                 Mujeres
@@ -43,6 +48,7 @@ export const MovilSideBar = ({ setIsOpen, setFiltros }) => {
               <label className="text-xl">
                 <input
                   className="mr-1"
+                  checked={filtros.categoria.includes("Niños")}
                   type="checkbox"
                   onChange={() => toggleFiltro("categoria", "Niños")}
                 />
