@@ -21,8 +21,12 @@ export const ProductCart = () => {
         )}
         <tbody className="overflow-y-auto">
           {carrito && carrito.length > 0 ? (
-            carrito.map((producto) => (
-              <ProductCarrito key={producto.id} producto={producto} />
+            carrito.map((producto, index) => (
+              <ProductCarrito
+                index={index}
+                key={producto.id}
+                producto={producto}
+              />
             ))
           ) : (
             <tr>

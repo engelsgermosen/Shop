@@ -4,7 +4,7 @@ import Minus from "../icons/Minus.svg";
 import { useCarrito } from "../context/CarritoContext";
 import Swal from "sweetalert2";
 
-export const ProductCarrito = ({ producto }) => {
+export const ProductCarrito = ({ producto, index }) => {
   const { updateCantidad, eliminarProducto } = useCarrito();
 
   const handleEliminar = () => {
@@ -30,8 +30,9 @@ export const ProductCarrito = ({ producto }) => {
 
   return (
     <tr
+      style={{ animationDelay: `${index * 100}ms` }}
       key={producto.id}
-      className="text-center text-white bg-gray-700 hover:bg-gray-500"
+      className="text-center animate-carro text-white bg-gray-700 hover:bg-gray-500"
     >
       <td className="p-1 flex justify-center border border-black">
         {<img className="size-14 aspect-video" src={producto.image} />}

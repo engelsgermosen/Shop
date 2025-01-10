@@ -1,37 +1,20 @@
 import { useFiltros } from "../context/FiltrosContext";
 import LoadingCircle from "./LoadingCircle";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MenuHamburger from "../icons/MenuHamburger.svg";
 import { Product } from "./Product";
 import Search from "../icons/Search.svg";
 import { MovilSideBar } from "./MovilSideBar";
 import { PageUp } from "./PageUp";
+import { useFetch } from "../context/FetchContext";
 
 export const Main = () => {
   const { filtros, setFiltros } = useFiltros();
-  const [productos, setProductos] = useState([]);
+  const { productos } = useFetch();
   const [error, setError] = useState();
   const [order, setOrder] = useState("relevante");
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    const usefetch = async () => {
-      try {
-        const response = await fetch("https://api-ten-jet.vercel.app/products");
-
-        if (!response.ok) {
-          console.error("Error al obtener productos");
-        }
-        const data = await response.json();
-        setProductos(data);
-      } catch (error) {
-        setError(error);
-      }
-    };
-
-    usefetch();
-  }, []);
 
   const handlePrice = (e) => {
     setOrder(e.target.value);

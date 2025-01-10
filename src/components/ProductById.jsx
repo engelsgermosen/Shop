@@ -4,33 +4,13 @@ import LoadingCircle from "./LoadingCircle";
 import { useEffect, useState } from "react";
 import { useCarrito } from "../context/CarritoContext";
 import Swal from "sweetalert2";
+import { useFetch } from "../context/FetchContext";
 
 export const ProductById = () => {
-  const [producto, setProducto] = useState();
-  const [error, setError] = useState();
   const { id } = useParams();
+  const { searchProduct } = useFetch();
+  const [producto, setProducto] = useState();
   const { agregarProducto } = useCarrito();
-
-  useEffect(() => {
-    const usefetch = async () => {
-      try {
-        const response = await fetch(
-          `https://api-ten-jet.vercel.app/products/${id}`
-        );
-
-        if (!response.ok) {
-          console.error("Error al obtener productos");
-          setError("Error al obtener productos");
-        }
-        const data = await response.json();
-        setProducto(data);
-      } catch (error) {
-        setError(error);
-      }
-    };
-
-    usefetch();
-  }, []);
 
   const handleAddProduct = () => {
     agregarProducto({ ...producto, cantidad: 1 });
@@ -43,12 +23,20 @@ export const ProductById = () => {
     });
   };
 
-  if (!producto) return <LoadingCircle />;
+  useEffect(() => {
+    const product = searchProduct(id);
+    setProducto(product);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [id, searchProduct]);
 
-  if (error) return <ProductNotFound />;
+  if (producto === null) return <LoadingCircle />;
+  if (producto === undefined) return <ProductNotFound />;
 
   return (
-    <div className="flex flex-1 bg-white/20">
+    <div className="flex flex-1 animate-fadein bg-white/20">
       <aside className="hidden md:flex w-1/4 max-w-[250px] bg-gray-300 pt-4">
         <img
           loading="lazy"
